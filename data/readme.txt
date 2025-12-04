@@ -1,0 +1,1 @@
+ 请将使用qq-chat-exporter导出的json文件放在这里，FreePigBro会自动读取它。
