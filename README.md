@@ -20,6 +20,4 @@
 
 来自宇宙尽头的餐馆。
 
-> What do you get when you multiply six by nine?
-> 
-> Fourty-two.
+> What do you get when you multiply six by nine？ Fourty-two.
