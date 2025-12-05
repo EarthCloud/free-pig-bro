@@ -12,8 +12,11 @@ import java.util.List;
 public class MessageHandler {
     @Setter
     private String jsonFileDir;
+
+    // 在运行时可能会修改
+    private String REPLY_CONTENT_PATH = "/rawMessage/elements/2/textElement/content";
+    // 不会被修改的常量
     private final String NORMAL_CONTENT_PATH = "/content/text";
-    private final String REPLY_CONTENT_PATH = "/rawMessage/elements/2/textElement/content";
     private final String DATE_PATH = "/timestamp";
     private final String SENDER_PATH = "/sender/uin";
 
@@ -61,6 +64,12 @@ public class MessageHandler {
 
     private TextEntity processReplyMessage(JsonNode messageNode) {
         TextEntity text = new TextEntity();
+        // 在私发消息时，要选择第二个元素而非第三个，索引需要修改
+        // 群组消息中，rawContent的第三个元素是回复的消息，而私聊中则是第二个
+        if (messageNode.at(REPLY_CONTENT_PATH).isMissingNode()){
+            REPLY_CONTENT_PATH="/rawMessage/elements/1/textElement/content";
+        }
+        // 更新索引后再重新获得消息文本
         text.setContent(messageNode.at(REPLY_CONTENT_PATH).asText());
         text.setSender(messageNode.at(SENDER_PATH).asText());
         text.setTimestamp(messageNode.at(DATE_PATH).asText());

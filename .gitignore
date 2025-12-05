@@ -38,4 +38,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-data/full.json
+data/*.json

@@ -37,6 +37,14 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
+
+        <fileSet>
+            <directory>output</directory>
+            <outputDirectory>output</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
     </fileSets>
 
     <dependencySets>
